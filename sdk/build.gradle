@@ -3,7 +3,7 @@ apply plugin: 'net.saliman.cobertura'
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
-//apply plugin: 'com.vanniktech.android.javadoc'
+
 
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
 
@@ -14,12 +14,12 @@ group = 'com.hapi.sdk'
 def mavenArtifactId = 'stormpath-sdk-android'
 
 def getVersionName = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'describe', '--tags'
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
+//    def stdout = new ByteArrayOutputStream()
+//    exec {
+//        commandLine 'git', 'describe', '--tags'
+//        standardOutput = stdout
+//    }
+    return "2.0.1-1-g3bb2d34"
 }
 
 // library version used when deploying the artifact
