@@ -48,8 +48,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/stormpath/sdk/android/AndroidPlatform.html" title="class in com.stormpath.sdk.android"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.stormpath.sdk.android"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../com/stormpath/sdk/android/AndroidPlatform.html" title="class in com.hapi.sdk.android"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.hapi.sdk.android"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/stormpath/sdk/android/CustomTabActivityHelper.html" target="_top">Frames</a></li>
@@ -91,7 +91,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">com.stormpath.sdk.android</div>
+<div class="subTitle">com.hapi.sdk.android</div>
 <h2 title="Class CustomTabActivityHelper" class="title">Class CustomTabActivityHelper</h2>
 </div>
 <div class="contentContainer">
@@ -99,7 +99,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>com.stormpath.sdk.android.CustomTabActivityHelper</li>
+<li>com.hapi.sdk.android.CustomTabActivityHelper</li>
 </ul>
 </li>
 </ul>
@@ -108,13 +108,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.stormpath.sdk.android">ServiceConnectionCallback</a></dd>
+<dd><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.hapi.sdk.android">ServiceConnectionCallback</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">CustomTabActivityHelper</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.stormpath.sdk.android">ServiceConnectionCallback</a></pre>
+implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.hapi.sdk.android">ServiceConnectionCallback</a></pre>
 <div class="block">This is a helper class to manage the connection to the Custom Tabs Service.</div>
 </li>
 </ul>
@@ -136,13 +136,13 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.ConnectionCallback</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.ConnectionCallback</a></span></code>
 <div class="block">A Callback for when the service is connected or disconnected.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.CustomTabFallback</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.CustomTabFallback</a></span></code>
 <div class="block">To be used as a fallback to open the Uri when Custom Tabs is not available.</div>
 </td>
 </tr>
@@ -210,16 +210,16 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.html#openCustomTab-android.app.Activity-android.support.customtabs.CustomTabsIntent-android.net.Uri-com.stormpath.sdk.android.CustomTabActivityHelper.CustomTabFallback-">openCustomTab</a></span>(android.app.Activity&nbsp;activity,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.html#openCustomTab-android.app.Activity-android.support.customtabs.CustomTabsIntent-android.net.Uri-com.hapi.sdk.android.CustomTabActivityHelper.CustomTabFallback-">openCustomTab</a></span>(android.app.Activity&nbsp;activity,
              android.support.customtabs.CustomTabsIntent&nbsp;customTabsIntent,
              android.net.Uri&nbsp;uri,
-             <a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.CustomTabFallback</a>&nbsp;fallback)</code>
+             <a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.CustomTabFallback</a>&nbsp;fallback)</code>
 <div class="block">Opens the URL on a Custom Tab if possible.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.html#setConnectionCallback-com.stormpath.sdk.android.CustomTabActivityHelper.ConnectionCallback-">setConnectionCallback</a></span>(<a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.ConnectionCallback</a>&nbsp;connectionCallback)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.html#setConnectionCallback-com.hapi.sdk.android.CustomTabActivityHelper.ConnectionCallback-">setConnectionCallback</a></span>(<a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.ConnectionCallback</a>&nbsp;connectionCallback)</code>
 <div class="block">Register a Callback to be called when connected or disconnected from the Custom Tabs Service.</div>
 </td>
 </tr>
@@ -268,7 +268,7 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="openCustomTab-android.app.Activity-android.support.customtabs.CustomTabsIntent-android.net.Uri-com.stormpath.sdk.android.CustomTabActivityHelper.CustomTabFallback-">
+<a name="openCustomTab-android.app.Activity-android.support.customtabs.CustomTabsIntent-android.net.Uri-com.hapi.sdk.android.CustomTabActivityHelper.CustomTabFallback-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -277,7 +277,7 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 <pre>public static&nbsp;void&nbsp;openCustomTab(android.app.Activity&nbsp;activity,
                                  android.support.customtabs.CustomTabsIntent&nbsp;customTabsIntent,
                                  android.net.Uri&nbsp;uri,
-                                 <a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.CustomTabFallback</a>&nbsp;fallback)</pre>
+                                 <a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.CustomTabFallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.CustomTabFallback</a>&nbsp;fallback)</pre>
 <div class="block">Opens the URL on a Custom Tab if possible. Otherwise fallsback to opening it on a WebView.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -316,13 +316,13 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 </dl>
 </li>
 </ul>
-<a name="setConnectionCallback-com.stormpath.sdk.android.CustomTabActivityHelper.ConnectionCallback-">
+<a name="setConnectionCallback-com.hapi.sdk.android.CustomTabActivityHelper.ConnectionCallback-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setConnectionCallback</h4>
-<pre>public&nbsp;void&nbsp;setConnectionCallback(<a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.stormpath.sdk.android">CustomTabActivityHelper.ConnectionCallback</a>&nbsp;connectionCallback)</pre>
+<pre>public&nbsp;void&nbsp;setConnectionCallback(<a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.hapi.sdk.android">CustomTabActivityHelper.ConnectionCallback</a>&nbsp;connectionCallback)</pre>
 <div class="block">Register a Callback to be called when connected or disconnected from the Custom Tabs Service.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -372,7 +372,7 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 <div class="block">Called when the service is connected.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html#onServiceConnected-android.support.customtabs.CustomTabsClient-">onServiceConnected</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.stormpath.sdk.android">ServiceConnectionCallback</a></code></dd>
+<dd><code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html#onServiceConnected-android.support.customtabs.CustomTabsClient-">onServiceConnected</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.hapi.sdk.android">ServiceConnectionCallback</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>client</code> - a CustomTabsClient</dd>
 </dl>
@@ -389,7 +389,7 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 <div class="block">Called when the service is disconnected.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html#onServiceDisconnected--">onServiceDisconnected</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.stormpath.sdk.android">ServiceConnectionCallback</a></code></dd>
+<dd><code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html#onServiceDisconnected--">onServiceDisconnected</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallback.html" title="interface in com.hapi.sdk.android">ServiceConnectionCallback</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -420,8 +420,8 @@ implements <a href="../../../../com/stormpath/sdk/android/ServiceConnectionCallb
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../com/stormpath/sdk/android/AndroidPlatform.html" title="class in com.stormpath.sdk.android"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.stormpath.sdk.android"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../com/stormpath/sdk/android/AndroidPlatform.html" title="class in com.hapi.sdk.android"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../com/stormpath/sdk/android/CustomTabActivityHelper.ConnectionCallback.html" title="interface in com.hapi.sdk.android"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?com/stormpath/sdk/android/CustomTabActivityHelper.html" target="_top">Frames</a></li>

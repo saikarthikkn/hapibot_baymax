@@ -1,5 +1,5 @@
-com.stormpath.sdk
-com.stormpath.sdk.android
-com.stormpath.sdk.models
-com.stormpath.sdk.providers
-com.stormpath.sdk.utils
+com.hapi.sdk
+com.hapi.sdk.android
+com.hapi.sdk.models
+com.hapi.sdk.providers
+com.hapi.sdk.utils

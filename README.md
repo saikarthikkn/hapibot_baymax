@@ -45,12 +45,12 @@ We're constantly iterating and improving the SDK, so please don't hesitate to se
 Add the SDK as a dependency to your `build.gradle` to automatically download it from jcenter.
 
 ```groovy
-compile 'com.stormpath.sdk:stormpath-sdk-android:2.0'
+compile 'com.hapi.sdk:stormpath-sdk-android:2.0'
 ```
 
 # Usage
 
-To see the SDK in action, you can try running the `com.stormpath.sdk.StormpathAndroidExample` project. 
+To see the SDK in action, you can try running the `com.hapi.sdk.HapiBot` project.
 
 ## Configuring Stormpath
 
@@ -138,7 +138,7 @@ In your `AndroidManifest.xml`, you'll need to add Stormpath's login handler acti
 Add this to your manifest:
 
 ```xml
-<activity android:name="com.stormpath.sdk.CustomTabActivity"
+<activity android:name="com.hapi.sdk.CustomTabActivity"
     android:exported="true">
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />

@@ -8,7 +8,7 @@ apply plugin: 'com.jfrog.bintray'
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
 
 // Maven Group ID for the artifact
-group = 'com.stormpath.sdk'
+group = 'com.hapi.sdk'
 
 // Maven Artifact ID
 def mavenArtifactId = 'stormpath-sdk-android'

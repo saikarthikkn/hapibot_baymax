@@ -10,7 +10,7 @@ cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml f
 version = getVersionFromGit()
 
 // Maven Group ID for the artifact
-group = 'com.stormpath.sdk'
+group = 'com.hapi.sdk'
 
 // Maven Artifact ID
 def mavenArtifactId = 'stormpath-sdk-android-ui'
