@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.graphics.Color.DKGRAY;
+
 
 public class TalkToMeActivity extends AppCompatActivity {
     public static final int VOICE_RECOGNITION_REQUEST_CODE = 1234;
@@ -160,6 +162,7 @@ public class TalkToMeActivity extends AppCompatActivity {
         {
             CheckBox cb = new CheckBox(getApplicationContext());
             cb.setText(m.getValue());
+            cb.setTextColor(DKGRAY);
             cb.setChecked(true);
             ll.addView(cb);
             allcheckboxAbove.add(cb);

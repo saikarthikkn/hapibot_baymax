@@ -24,7 +24,7 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,6 +37,9 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".TalkToMeActivity" />
         <activity android:name=".DisplayQuestionsActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".DetailViewActivity" />
+        <activity android:name=".UploadFileActivity" />
 
         <activity android:name=".DisplaySymptomsResult" />
         <activity android:name=".AndroidCamera2API" />

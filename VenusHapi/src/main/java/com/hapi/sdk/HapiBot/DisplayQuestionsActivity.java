@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import data.model.Choice;
 import data.model.Condition;
@@ -44,12 +45,23 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
     int numberOfRadioButtons;
     RadioGroup radioGroup;
 
-    // Starts Text To Speech Module
+
+// Starts Text To Speech Module
     TextToSpeech t1;
-//    questionsGrp
+    protected void say(final String toSpeak)
+    {
+        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.US);
+                }
+                t1.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+    }
 
     // Ends TextToSpeech Module
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +111,8 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void okBtnClicked(View view){
-        if(radioGroup.getCheckedRadioButtonId()==-1){
-                    Toast.makeText(getApplicationContext(),"select an option first",Toast.LENGTH_LONG).show();
 
-        }else{
-            if(count<=MAX_QUESTIONS){
+            if(count<MAX_QUESTIONS){
                 int checkedRadioButtonId =radioGroup.getCheckedRadioButtonId();
                 View radioButton=radioGroup.findViewById(checkedRadioButtonId);
                 int indexOfChild=radioGroup.indexOfChild(radioButton);
@@ -140,7 +149,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
                 int count=0;
                 for(Condition condition:result){
                     if(count<MAX_PROBABILITIES){
-                        resultAndProbability.add(condition.getName()+" : "+condition.getProbability());
+                        resultAndProbability.add(condition.getName()+" : "+condition.getProbability()+"%");
                     }else{
                         break;
                     }
@@ -151,7 +160,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             count++;
-        }
+
 
     }
 
@@ -227,7 +236,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
             RadioButton radioButton;
             int numberOfItems=diagnosis.getQuestion().getItems().size();
             textView.setText(diagnosis.getQuestion().getText());
-//        say(diagnosis.getQuestion().getText());
+        say(diagnosis.getQuestion().getText());
             if(numberOfItems>1){
                 numberOfRadioButtons=numberOfItems;
                 for(int i=0;i<numberOfRadioButtons;i++){
@@ -251,6 +260,8 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
 //            }
                 for (int i=0;i<numberOfRadioButtons;i++){
                     radioButton=new RadioButton(getApplicationContext());
+                    radioButton.setButtonTintList(colorStateList);
+                    radioButton.setTextColor(R.color.colorAccent);
                     radioButton.setText(diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
                     radioGroup.addView(radioButton);
 //                say(i+1+diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());

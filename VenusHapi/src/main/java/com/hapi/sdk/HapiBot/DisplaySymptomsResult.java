@@ -1,6 +1,7 @@
 package com.hapi.sdk.HapiBot;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,9 +26,10 @@ private static final int MAX_NUMBER_OF_PROBABILITIES=3;
         Intent intent=getIntent();
         List<String> message=intent.getStringArrayListExtra(DisplayQuestionsActivity.EXTRA_MESSAGE);
         TextView textView=(TextView) findViewById(R.id.txtAnswer);
-        textView.setText("Hey!!This is what I have found for what you're suffering from:");
+        textView.setText("Hey!!This is what I have found. Please select one option for my learning");
         for(String condition:message){
             radioButton=new RadioButton(getApplicationContext());
+            radioButton.setTextColor(Color.BLACK);
             radioButton.setText(condition);
             radioGroup.addView(radioButton);
         }
