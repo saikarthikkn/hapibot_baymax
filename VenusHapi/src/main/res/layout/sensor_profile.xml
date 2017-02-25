@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/greybackground"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="143dp"
+            android:layout_weight="0.00"
+            android:weightSum="1">
+
+        <ImageView
+        android:layout_width="113dp"
+        android:layout_height="137dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/imageView2"
+        android:background="@mipmap/fitbit_icon" />
+    <ImageView
+        android:layout_width="116dp"
+        android:layout_height="140dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="60dp"
+        android:id="@+id/imageView3"
+        android:background="@mipmap/android_wear_" />
+</LinearLayout>
+        <TextView
+            android:id="@+id/text_id_client"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/text_id_secret"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+        android:id="@+id/text_id_value"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+
+        android:hint="Maximum HeartRate Limit"
+        android:background="#f3f3f3"
+        android:paddingLeft="5dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="15dp"
+        android:headerBackground="@android:color/transparent"
+        android:id="@+id/heartRate"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold|italic"
+        android:id="@+id/text_id_accuracy"/>
+        </LinearLayout>
+
+</LinearLayout>

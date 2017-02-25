@@ -1,5 +1,6 @@
 package com.hapi.sdk.HapiBot;
 
+import com.hapi.sdk.HapiBot.views.*;
 import com.hapi.sdk.Stormpath;
 import com.hapi.sdk.StormpathCallback;
 import com.hapi.sdk.models.Account;
@@ -250,9 +251,11 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
 
         if (id == R.id.nav_camera) {
             startActivity(new Intent(this, PersonalDetailsActivity.class));
+       } else if (id == R.id.nav_sensors) {
+            startActivity(new Intent(this, SensorActivity.class));
+        } else if (id == R.id.nav_nearestHospitals) {
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(this, EmergencyDetailsActivity.class));
-
 
         } else if (id == R.id.nav_slideshow) {
 
