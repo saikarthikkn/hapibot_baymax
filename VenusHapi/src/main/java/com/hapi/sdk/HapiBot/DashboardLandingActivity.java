@@ -32,7 +32,7 @@ Will have
  */
 
 public class DashboardLandingActivity extends AppCompatActivity {
-    FloatingActionButton plus,call,speak;
+    FloatingActionButton plus, btnAttachments, btnTalkToMe;
     Animation plus_open, plus_close,plusclockwise,plusanticlockwise;
     boolean isopen=false;
     @Override
@@ -45,8 +45,8 @@ public class DashboardLandingActivity extends AppCompatActivity {
         final EditText accessTokenEditText = (EditText) findViewById(R.id.input_access_token);
         final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
         plus=(FloatingActionButton)findViewById(R.id.plus);
-        call=(FloatingActionButton)findViewById(R.id.call);
-        speak=(FloatingActionButton)findViewById(R.id.speak);
+        btnAttachments =(FloatingActionButton)findViewById(R.id.call);
+        btnTalkToMe =(FloatingActionButton)findViewById(R.id.speak);
         plus_open= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_open);
         plus_close= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_close);
         plusclockwise= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
@@ -56,22 +56,22 @@ public class DashboardLandingActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 if(isopen) {
-                    call.startAnimation(plus_close);
-                    speak.startAnimation(plus_close);
+                    btnAttachments.startAnimation(plus_close);
+                    btnTalkToMe.startAnimation(plus_close);
                     plus.startAnimation(plusanticlockwise);
-                    call.setClickable(false);
-                    speak.setClickable(false);
+                    btnAttachments.setClickable(false);
+                    btnTalkToMe.setClickable(false);
 
                     isopen=false;
                 }
                 else
                 {
-                    call.startAnimation(plus_open);
-                    speak.startAnimation(plus_open);
+                    btnAttachments.startAnimation(plus_open);
+                    btnTalkToMe.startAnimation(plus_open);
                     plus.startAnimation(plusclockwise);
-                    call.setClickable(true);
-                    speak.setClickable(true);
-                    call.setOnClickListener(new View.OnClickListener() {
+                    btnAttachments.setClickable(true);
+                    btnTalkToMe.setClickable(true);
+                    btnAttachments.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             Uri number = Uri.parse("tel:9740604400");
                             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
@@ -79,12 +79,17 @@ public class DashboardLandingActivity extends AppCompatActivity {
                         }}
                     );
 
-                    speak.setOnClickListener(new View.OnClickListener() {
+                    btnTalkToMe.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            Uri number = Uri.parse("sms:9740604400");
-                            Intent intent = new Intent( Intent.ACTION_VIEW, number);
-                            intent.putExtra( "sms_body", "Hello" );
-                            startActivity(intent);
+//                            Uri number = Uri.parse("sms:9740604400");
+//                            Intent intent=new Intent(getApplication(),TalkToMeActivity.class);
+////                            startActivity(new Intent(this));
+////                            Intent intent = new Intent( Intent.ACTION_VIEW, number);
+////                            intent.putExtra( "sms_body", "Hello" );
+//                            startActivity(intent);
+//                            Intent intent=new Intent(this,TalkToMeActivity.class);
+//                            startActivity(intent);
+                            callTalkToMeACtivity();
                         }}
                     );
                     isopen=true;
@@ -109,6 +114,7 @@ public class DashboardLandingActivity extends AppCompatActivity {
             @Override
             public void onFailure(StormpathError error) {
                 Toast.makeText(DashboardLandingActivity.this, error.message(), Toast.LENGTH_LONG).show();
+                onLogoutClicked();
             }
         });
 
@@ -161,5 +167,10 @@ public class DashboardLandingActivity extends AppCompatActivity {
         }
         else
         { return "Good Morning !!";}
+    }
+
+    private void callTalkToMeACtivity(){
+        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        startActivity(intent);
     }
 }
