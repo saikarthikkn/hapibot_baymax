@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/andWear"
             android:title="Profile Information" />
         <item
             android:id="@+id/nav_gallery"
