@@ -6,8 +6,10 @@ import com.hapi.sdk.StormpathCallback;
 import com.hapi.sdk.models.StormpathError;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -25,11 +27,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button forgotPasswordButton;
     private Button registerButton;
 
+
     private StormpathCallback<Void> loginCallback = new StormpathCallback<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
-           // navigateToProfile();
-            navigateToHome();
+
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String highScore = sharedPref.getString("userName","none");
+            if(highScore.equals("none")) {
+                navigateToProfile();
+            }else {
+                navigateToHome();
+            }
         }
 
         @Override
@@ -136,7 +145,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void navigateToProfile() {
-        startActivity(new Intent(this, PersonalDetailsActivity.class));
+        startActivity(new Intent(this, ProfileConfiguration.class));
         finish();
     }
 }
