@@ -1,5 +1,6 @@
 package data.model;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -22,18 +23,6 @@ public class Condition implements Parcelable {
         id = in.readString();
         name = in.readString();
     }
-
-    public static final Creator<Condition> CREATOR = new Creator<Condition>() {
-        @Override
-        public Condition createFromParcel(Parcel in) {
-            return new Condition(in);
-        }
-
-        @Override
-        public Condition[] newArray(int size) {
-            return new Condition[size];
-        }
-    };
 
     public String getId() {
         return id;
@@ -68,5 +57,31 @@ public class Condition implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
         parcel.writeString(name);
+        parcel.writeString(probability.toString());
+
     }
+//    public static final Parcelable.Creator<Condition> CREATOR =
+//            new Parcelable.Creator<Condition>() {
+//                public Condition createFromParcel(Parcel in) {
+//                    Condition category = new Category();
+//                    category.category = in.readString();
+//                    Bundle b = in.readBundle(Item.class.getClassLoader());
+//                    Condition.items = b.getParcelableArrayList("items");
+//
+//                    return category;
+//                }
+
+    public static final Parcelable.Creator<Condition> CREATOR=new Creator<Condition>() {
+        @Override
+        public Condition createFromParcel(Parcel source) {
+            Condition condition=new Condition(source);
+            return condition;
+
+        }
+
+        @Override
+        public Condition[] newArray(int size) {
+            return new Condition[0];
+        }
+    };
 }
