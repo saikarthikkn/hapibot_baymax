@@ -41,7 +41,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
     TextView textView;
     public final int MAX_QUESTIONS=5;
     public final int MAX_PROBABILITIES=3;
-    static int count=1;
+    static int count=0;
     int numberOfRadioButtons;
     RadioGroup radioGroup;
 
@@ -71,6 +71,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
         radioGroup = (RadioGroup)findViewById(R.id.questionsGrp);
         initializeSymptoms();
         initializeConditions();
+        count=0;
         List<String> symptomsAcquired=getIntent().getStringArrayListExtra("keywords");
         diagnoseDisease(symptomsAcquired);
     }
@@ -146,14 +147,14 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
 
                 result=diagnosis.getConditions();
                 ArrayList<String> resultAndProbability=new ArrayList<>();
-                int count=0;
+                int maxAnswers=0;
                 for(Condition condition:result){
-                    if(count<MAX_PROBABILITIES){
-                        resultAndProbability.add(condition.getName()+" : "+condition.getProbability()+"%");
+                    if(maxAnswers<MAX_PROBABILITIES){
+                        resultAndProbability.add(condition.getName()+" : "+condition.getProbability());
                     }else{
                         break;
                     }
-                    count++;
+                    maxAnswers++;
                 }
                 Intent intent = new Intent(this, DisplaySymptomsResult.class);
                 intent.putStringArrayListExtra(EXTRA_MESSAGE,resultAndProbability);
