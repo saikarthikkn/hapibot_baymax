@@ -59,6 +59,7 @@
     <string name="Weight_label">Height</string>
 
 
-
     <string name="take_picture">Take Photo</string>
+
+    <string name="pref_accesstoken">pref_accesstoken</string>
 </resources>
