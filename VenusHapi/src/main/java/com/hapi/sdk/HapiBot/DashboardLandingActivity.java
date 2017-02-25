@@ -8,8 +8,16 @@ import com.hapi.sdk.models.StormpathError;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -31,19 +39,36 @@ Will have
 
  */
 
-public class DashboardLandingActivity extends AppCompatActivity {
+public class DashboardLandingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     FloatingActionButton plus, btnAttachments, btnTalkToMe, btnCamera,btnUploadFile;
+
     Animation plus_open, plus_close,plusclockwise,plusanticlockwise;
     boolean isopen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_landing);
+
+        //Start of Nvigation
+        //setContentView(R.layout.activity_dash_landing);
+        setContentView(R.layout.activity_dash_navigation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.dashtoolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //End of Navigation
 
         final TextView welcomeTextView = (TextView) findViewById(R.id.tv_welcome);
-        final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
+       // final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
         final EditText accessTokenEditText = (EditText) findViewById(R.id.input_access_token);
-        final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
+       // final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
         plus=(FloatingActionButton)findViewById(R.id.plus);
         btnAttachments =(FloatingActionButton)findViewById(R.id.call);
         btnTalkToMe =(FloatingActionButton)findViewById(R.id.speak);
@@ -120,11 +145,11 @@ public class DashboardLandingActivity extends AppCompatActivity {
         Stormpath.getAccount(new StormpathCallback<Account>() {
             @Override
             public void onSuccess(Account account) {
-                String profileInfoText = "Email: " + account.getEmail() + "\n" +
+                String profileInfoText = //"Email: " + account.getEmail() + "\n" +
                         "Username: " + account.getUsername(); //+ "\n" +
                        // "Href: " + account.getHref();
 
-                profileTextView.setText(profileInfoText);
+                //profileTextView.setText(profileInfoText);
                 welcomeTextView.setText(getTimeFromAndroid()+ ", " + account.getGivenName());
 
                 accessTokenEditText.setText("Hope You are sleeping Enough!");
@@ -172,26 +197,88 @@ public class DashboardLandingActivity extends AppCompatActivity {
     private String getTimeFromAndroid() {
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
-        if(hours>=1 || hours<=12){
+        if(hours>=1 && hours<=12){
             // Toast.makeText(this, "Good Morning", Toast.LENGTH_SHORT).show();
-            return "Good Morning !!";
-        }else if(hours>=12 || hours<=16){
+            return "Good Morning";
+        }else if(hours>=12 && hours<=16){
             //Toast.makeText(this, "Good Afternoon", Toast.LENGTH_SHORT).show();
-            return "Good Afternoon !!";
-        }else if(hours>=16 || hours<=21){
+            return "Good Afternoon";
+        }else if(hours>=16 && hours<=21){
             //  Toast.makeText(this, "Good Evening", Toast.LENGTH_SHORT).show();
-            return "Good Evening !!";
-        }else if(hours>=21 || hours<=24){
+            return "Good Evening";
+        }else if(hours>=21 && hours<=24){
             // Toast.makeText(this, "Good Night", Toast.LENGTH_SHORT).show();
-            return "Good Night !!";
+            return "Good Night";
         }
         else
-        { return "Good Morning !!";}
+        { return "Good Morning";}
     }
 
     private void callTalkToMeACtivity(){
         Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dash_navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            startActivity(new Intent(this, PersonalDetailsActivity.class));
+        } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(this, EmergencyDetailsActivity.class));
+
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
     private void callCameraActivity(){
         Intent intent=new Intent(DashboardLandingActivity.this,AndroidCamera2API.class);

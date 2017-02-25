@@ -6,8 +6,10 @@ import com.hapi.sdk.StormpathCallback;
 import com.hapi.sdk.models.StormpathError;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -25,10 +27,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button forgotPasswordButton;
     private Button registerButton;
 
+
     private StormpathCallback<Void> loginCallback = new StormpathCallback<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
-            navigateToHome();
+
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String highScore = sharedPref.getString("userName","none");
+            if(highScore.equals("none")) {
+                navigateToProfile();
+            }else {
+                navigateToHome();
+            }
         }
 
         @Override
@@ -80,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_hapibotlogin);
 
         usernameInput = (EditText) findViewById(R.id.input_username);
         passwordInput = (EditText) findViewById(R.id.input_password);
@@ -131,6 +141,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void navigateToHome() {
         startActivity(new Intent(this, DashboardLandingActivity.class));
+        finish();
+    }
+
+    private void navigateToProfile() {
+        startActivity(new Intent(this, ProfileConfiguration.class));
         finish();
     }
 }
