@@ -29,6 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".SensorActivity" />
+
         <activity android:name=".RootActivity"></activity>
         <activity android:name=".UserDataActivity" />
         <activity android:name=".ProfileActivity" />
