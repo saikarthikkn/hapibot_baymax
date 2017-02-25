@@ -131,6 +131,12 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                                callCameraActivity();
                         }
                     });
+
+                    btnUploadFile.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            callUploadFileActivity();
+                        }
+                    });
                     isopen=true;
                 }
             }
@@ -279,7 +285,7 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         startActivity(intent);
     }
     private void callUploadFileActivity(){
-        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        Intent intent=new Intent(DashboardLandingActivity.this,UploadFileActivity.class);
         startActivity(intent);
     }
 }

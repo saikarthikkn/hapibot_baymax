@@ -82,6 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " TEXT," + _value
             + " TEXT" + ")";
 
+    private  static final String NUM_ROWS_ScannedReport = "SELECT count(*) FROM "+TABLE_ScannedReport;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -237,13 +239,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return report_id;
     }
-    public long createScannedReportEntry(ScannedReport report, SQLiteDatabase db) {
-
+    public long createScannedReportEntry(ScannedReport report) {
+        SQLiteDatabase db = this.getWritableDatabase();
         System.out.println("Inserting ScannedReport values");
         ContentValues values = new ContentValues();
         values.put(_reportIDKey, report.getReportID());
 
-        values.put(_date, getDateTime(report.getDate()));
+//        values.put(_date, getDateTime(report.getDate()));
         values.put(_name, report.getName());
         values.put(_path, report.getPath());
         values.put(_type, report.getType());
@@ -253,7 +255,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return report_id;
     }
 
-    public void createScannedReportEntries(ScannedReport[] reports) {
+    public int getNumOfEntriesInScannedReports() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(NUM_ROWS_ScannedReport, null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
+    /*public void createScannedReportEntries(ScannedReport[] reports) {
         if(reports==null || reports.length==0)
             return;
 
@@ -261,7 +271,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         for (ScannedReport report: reports) {
             createScannedReportEntry(report, db);
         }
-    }
+    }*/
 
     private String getDateTime(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
@@ -290,6 +300,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return;
 
         SQLiteDatabase db = getWritableDatabase();
+
         for (LabReportResult report: reports) {
             createLabReportResultEntry(report, db);
         }
@@ -339,4 +350,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (db != null && db.isOpen())
             db.close();
     }
+
+
 }

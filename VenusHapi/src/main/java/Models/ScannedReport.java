@@ -10,11 +10,17 @@ import java.util.Date;
 public class ScannedReport {
 
     String reportID;
-    Date date;
+    String date;
     String name;
     String path;
     String type;
 
+    public ScannedReport(String date, String name, String path, String type){
+        this.date = date;
+        this.name = name;
+        this.path = path;
+        this.type = type;
+    }
 
     public String getReportID() {
         return reportID;
@@ -24,11 +30,11 @@ public class ScannedReport {
         this.reportID = reportID;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
