@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hapi.sdk.HapiBot">
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -8,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera2.full" />
+
     <application
         android:name=".StormpathVirtualCannonApp"
         android:allowBackup="true"
@@ -17,19 +19,25 @@
         android:theme="@style/AppTheme">
         <activity android:name=".DashboardLandingActivity" />
         <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".TalkToMeActivity" />
+        <activity android:name=".DisplayQuestionsActivity" />
+        <activity android:name=".DisplayResult" />
+        <activity android:name=".AndroidCamera2API" />
+        <activity android:name=".DetailViewActivity" />
+        <activity
+            android:name=".OCRParseActivity"
+            android:theme="@style/Fullscreen" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".TalkToMeActivity" />
-        <activity android:name=".DisplayQuestionsActivity"></activity>
-        <activity android:name=".DisplayResult" />
-        <activity android:name=".AndroidCamera2API" />
-        <activity android:name=".OCRParseActivity"
-            android:theme="@style/Fullscreen"></activity>
         <!-- <activity -->
         <!-- android:name="com.hapi.sdk.CustomTabActivity" -->
         <!-- android:exported="true"> -->
@@ -49,6 +57,7 @@
             android:name=".HeartRateService"
             android:exported="false" />
 
+        <activity android:name=".UploadFileActivity"></activity>
     </application>
 
 </manifest>

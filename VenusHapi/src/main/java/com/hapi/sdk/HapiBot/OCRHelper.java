@@ -15,6 +15,7 @@ import Models.OCRFileIDData;
 import Models.OCRFileResponse;
 import Models.OCRRecognizedTextResponse;
 import Models.OCRTextData;
+import Models.ScannedReport;
 import Remote.ApiUtils;
 import Remote.OCRService;
 import okhttp3.MediaType;
@@ -50,8 +51,9 @@ public class OCRHelper extends AsyncTask<Void, Void, Boolean> {
 
 //        try {
 
-            getAndSaveRecognizedText();
-        //parseRecognizedText();
+            //getAndSaveRecognizedText();
+        recognized_text = "Laboratory Test Patient’s results Reference Value\\nCreatinine 40.5 <79.2\\nUrea 2.9 <8.3\\nTotal protein 82 64-83\\nAlbumin fraction 63.5 60-71\\nAlpha 1 fraction 2.4 1.4-2.9\\nAlpha 2 fraction 12.1 7-11\\nBeta globulin fraction 16.4 8-13\\nGamma globulin fraction 5.6 9-16\\nAlbumin zone 51.3 53.1-66.4\\nAlpha 1 zone 5.9 3.2-5.7\\nAlpha 2 zone 16.3 7.5-12.4\\nBeta 1 zone 15.7 5.2-8.1\\nBeta 2 zone 4.7 3.4-6.5";
+        parseRecognizedText();
 //        }
 //
         // TODO: register the new account here.
@@ -62,6 +64,7 @@ public class OCRHelper extends AsyncTask<Void, Void, Boolean> {
     {
         activity.parseCompleted(recognized_text);
         try {
+
             LabTestReport[] testsData = loadTestNameData();
 
             //String report = "TABLE 1: BLOOD ANALYSIS\nTest Name\n\nAlbunin 4.90 H\nGlobuin 2.70 Low\nTotal Protein 7.60 Opt\nTotal Cholesterol 1 82.00 H\nTrigycetide 70.00 Low";
