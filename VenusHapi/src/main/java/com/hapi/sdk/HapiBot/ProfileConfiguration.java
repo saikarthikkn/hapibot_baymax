@@ -1,5 +1,9 @@
 package com.hapi.sdk.HapiBot;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,18 +14,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.hapi.sdk.HapiBot.R;
 
 public class ProfileConfiguration extends AppCompatActivity {
 
+    private static final int PICK_CONTACT = 1 ;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -50,6 +58,47 @@ public class ProfileConfiguration extends AppCompatActivity {
 
     }
 
+    public void listContacts(View v)
+    {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, PICK_CONTACT);
+    }
+
+
+    public void saveProfile(View v)
+    {
+        SharedPreferences sharedPref =  getSharedPreferences("com.hapi.botuserpreference",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.clear();
+
+        EditText nameView = (EditText)findViewById(R.id.fragproconftxtfullname);
+        editor.putString("userName", nameView.getText().toString());
+
+        EditText ageView = (EditText)findViewById(R.id.fragproconftxtage);
+        editor.putString("userAge", ageView.getText().toString());
+
+        Spinner spinView = (Spinner)findViewById(R.id.fragproconfgender);
+        editor.putString("userGender", spinView.getSelectedItem().toString());
+
+        EditText htView = (EditText)findViewById(R.id.fragproconftxtheight);
+        editor.putString("userHeight", htView.getText().toString());
+        EditText wtView = (EditText)findViewById(R.id.fragproconftxtweight);
+        editor.putString("userWeight", wtView.getText().toString());
+
+        EditText emNameView = (EditText)findViewById(R.id.emegconftxtfullname);
+        editor.putString("emerName", emNameView.getText().toString());
+
+        EditText emphoneView = (EditText)findViewById(R.id.emegconftxtphone);
+        editor.putString("emerPhone", emphoneView.getText().toString());
+
+
+        editor.commit();
+
+        Log.v("sai", "Saved name after commit is "+ sharedPref.getString("userName", "") );
+
+        startActivity(new Intent(this, DashboardLandingActivity.class));
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,7 +151,7 @@ public class ProfileConfiguration extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_profile_configuration, container, false);
-            TextView nameView = (TextView) rootView.findViewById(R.id.cardholderName);
+            //TextView nameView = (TextView) rootView.findViewById(R.id.cardholderName);
            // nameView.setText(getArguments().getString("userName"));
             return rootView;
         }
@@ -138,6 +187,12 @@ public class ProfileConfiguration extends AppCompatActivity {
 //
             return rootView;
         }
+
+//        public static void listContacts(View v)
+//        {
+//            Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+//            startActivityForResult(intent, PICK_CONTACT);
+//        }
     }
 
     /**

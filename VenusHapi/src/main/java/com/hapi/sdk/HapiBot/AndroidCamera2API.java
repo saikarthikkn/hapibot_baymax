@@ -156,9 +156,9 @@ public class AndroidCamera2API extends AppCompatActivity {
             if (characteristics != null) {
                 jpegSizes = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP).getOutputSizes(ImageFormat.JPEG);
             }
-            int width = 4200;
-            int height = 2000;
-            if (jpegSizes != null && 0 < jpegSizes.length) {
+            int width = 300;
+            int height = 250;
+            if (jpegSizes != null && 17 < jpegSizes.length) {
                 width = jpegSizes[17].getWidth();
                 height = jpegSizes[17].getHeight();
             }

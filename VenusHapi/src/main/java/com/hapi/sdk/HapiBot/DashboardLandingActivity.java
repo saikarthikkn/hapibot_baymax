@@ -131,6 +131,12 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                                callCameraActivity();
                         }
                     });
+
+                    btnUploadFile.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            callUploadFileActivity();
+                        }
+                    });
                     isopen=true;
                 }
             }
@@ -243,9 +249,9 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(this, PersonalDetailsActivity.class));
+        } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(this, EmergencyDetailsActivity.class));
 
 
         } else if (id == R.id.nav_slideshow) {
@@ -279,7 +285,7 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         startActivity(intent);
     }
     private void callUploadFileActivity(){
-        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        Intent intent=new Intent(DashboardLandingActivity.this,UploadFileActivity.class);
         startActivity(intent);
     }
 }
