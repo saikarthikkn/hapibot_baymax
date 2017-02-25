@@ -100,6 +100,32 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginRight="@dimen/float_margin_right"
+        android:layout_marginBottom="340dp"
+        android:src="@drawable/ic_menu_camera"
+        android:elevation="6dp"
+        android:id="@+id/camera"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/floatbtncolor1"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="@dimen/float_margin_right"
+        android:layout_marginBottom="260dp"
+        android:src="@drawable/ic_menu_gallery"
+        android:elevation="6dp"
+        android:id="@+id/file"
+        app:pressedTranslationZ="12dp"
+        app:backgroundTint="@color/floatbtncolor1"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="@dimen/float_margin_right"
         android:layout_marginBottom="180dp"
         android:src="@drawable/ic_action_call"
         android:elevation="6dp"

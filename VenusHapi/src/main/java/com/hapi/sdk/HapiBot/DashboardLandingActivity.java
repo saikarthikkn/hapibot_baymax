@@ -40,7 +40,8 @@ Will have
  */
 
 public class DashboardLandingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    FloatingActionButton plus, btnAttachments, btnTalkToMe;
+    FloatingActionButton plus, btnAttachments, btnTalkToMe, btnCamera,btnUploadFile;
+
     Animation plus_open, plus_close,plusclockwise,plusanticlockwise;
     boolean isopen=false;
     @Override
@@ -71,6 +72,8 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         plus=(FloatingActionButton)findViewById(R.id.plus);
         btnAttachments =(FloatingActionButton)findViewById(R.id.call);
         btnTalkToMe =(FloatingActionButton)findViewById(R.id.speak);
+        btnCamera =(FloatingActionButton)findViewById(R.id.camera);
+        btnUploadFile =(FloatingActionButton)findViewById(R.id.file);
         plus_open= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_open);
         plus_close= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_close);
         plusclockwise= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
@@ -82,19 +85,26 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                 if(isopen) {
                     btnAttachments.startAnimation(plus_close);
                     btnTalkToMe.startAnimation(plus_close);
+                    btnCamera.startAnimation(plus_close);
+                    btnUploadFile.startAnimation(plus_close);
                     plus.startAnimation(plusanticlockwise);
                     btnAttachments.setClickable(false);
                     btnTalkToMe.setClickable(false);
-
+                    btnCamera.setClickable(false);
+                    btnUploadFile.setClickable(false);
                     isopen=false;
                 }
                 else
                 {
                     btnAttachments.startAnimation(plus_open);
                     btnTalkToMe.startAnimation(plus_open);
+                    btnUploadFile.startAnimation(plus_open);
+                    btnCamera.startAnimation(plus_open);
                     plus.startAnimation(plusclockwise);
                     btnAttachments.setClickable(true);
                     btnTalkToMe.setClickable(true);
+                    btnCamera.setClickable(true);
+                    btnUploadFile.setClickable(true);
                     btnAttachments.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             Uri number = Uri.parse("tel:9740604400");
@@ -116,6 +126,11 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                             callTalkToMeACtivity();
                         }}
                     );
+                    btnCamera.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                               callCameraActivity();
+                        }
+                    });
                     isopen=true;
                 }
             }
@@ -258,5 +273,13 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         } else {
             super.onBackPressed();
         }
+    }
+    private void callCameraActivity(){
+        Intent intent=new Intent(DashboardLandingActivity.this,AndroidCamera2API.class);
+        startActivity(intent);
+    }
+    private void callUploadFileActivity(){
+        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        startActivity(intent);
     }
 }
