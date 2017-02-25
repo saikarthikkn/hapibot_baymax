@@ -20,12 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".RootActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".RootActivity"></activity>
         <activity android:name=".UserDataActivity" />
         <activity android:name=".ProfileActivity" />
         <!-- <activity -->
@@ -50,6 +45,10 @@
         <activity
             android:name=".PersonalDetailsActivity"
             android:label="@string/title_activity_personal_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileConfiguration"
+            android:label="@string/title_activity_profile_configuration"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

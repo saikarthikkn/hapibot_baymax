@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.fitbit.api.MissingScopesException;
 import com.fitbit.api.ResourceLoadedHandler;
-import com.fitbit.api.models.Activities;
-import com.fitbit.api.models.Device;
-import com.fitbit.api.models.HeartRate;
 import com.fitbit.api.models.User;
 import com.fitbit.api.services.ActivityService;
 import com.fitbit.api.services.DeviceService;

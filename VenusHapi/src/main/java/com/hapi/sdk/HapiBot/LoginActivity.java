@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (!TextUtils.isEmpty(Stormpath.getAccessToken())) {
             // if we already have an accessToken saved, the user should be logged in
-            navigateToHome();
+            navigateToProfile();
         }
 
         loginButton.setOnClickListener(this);

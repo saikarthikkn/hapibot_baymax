@@ -28,8 +28,8 @@ public class FitbitAuthApplication extends Application {
      * values, you'll want to package up into a jks for a production application.
      */
 
-    private static final String CLIENT_ID = "2285JZ";
-    private static final String CLIENT_SECRET = "3eae20f0e4d1106c9f91fac999a6b053";
+    private static final String CLIENT_ID = "2284QG";
+    private static final String CLIENT_SECRET = "18286bb9c22ed6d3912be18df49cb776";
     private static final String REDIRECT_URL = "https://finished";
 
 

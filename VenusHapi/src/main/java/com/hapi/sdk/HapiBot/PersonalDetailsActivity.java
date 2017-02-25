@@ -29,7 +29,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
 
     private void navigateToProfile() {
-        startActivity(new Intent(this, RootActivity.class));
+        startActivity(new Intent(this, ProfileConfiguration.class));
         finish();
     }
 

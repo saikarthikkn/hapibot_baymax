@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HApI Bot9</string>
+    <string name="app_name">HApI Bot9a</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -48,4 +48,15 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_personal_details">PersonalDetailsActivity</string>
+    <string name="title_activity_profile_configuration">ProfileConfiguration</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+    <string name="name_label">User Name </string>
+    <string name="age_label">Age </string>
+    <string name="gender_label">Gender</string>
+    <string name="Height_label">Height</string>
+    <string name="Weight_label">Height</string>
+
+
 </resources>
