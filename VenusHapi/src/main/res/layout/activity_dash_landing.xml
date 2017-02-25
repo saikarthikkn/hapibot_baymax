@@ -31,13 +31,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hello, User!"
-            android:id="@+id/tv_welcome"
-            android:layout_gravity="center_horizontal" />
 
 
 
@@ -52,12 +45,25 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"/>
+        <com.hapi.sdk.HapiBot.GifView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:text="Hello World!"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hello, User!"
+            android:id="@+id/tv_welcome"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Access Token"
-        android:id="@+id/textView" />
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Access Token"-->
+        <!--android:id="@+id/textView" />-->
 
     <EditText
         android:layout_width="match_parent"
@@ -66,18 +72,18 @@
         android:layout_gravity="center_horizontal"
         android:inputType="text" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Refresh Token"
-        android:id="@+id/textView2" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Refresh Token"-->
+        <!--android:id="@+id/textView2" />-->
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/input_refresh_token"
-        android:layout_gravity="center_horizontal"
-        android:inputType="text" />
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/input_refresh_token"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:inputType="text" />-->
 
     <Button
             android:layout_width="match_parent"

@@ -67,9 +67,9 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         //End of Navigation
 
         final TextView welcomeTextView = (TextView) findViewById(R.id.tv_welcome);
-        final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
+       // final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
         final EditText accessTokenEditText = (EditText) findViewById(R.id.input_access_token);
-        final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
+       // final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
         plus=(FloatingActionButton)findViewById(R.id.plus);
         btnAttachments =(FloatingActionButton)findViewById(R.id.call);
         btnTalkToMe =(FloatingActionButton)findViewById(R.id.speak);
@@ -132,6 +132,12 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                                callCameraActivity();
                         }
                     });
+
+                    btnUploadFile.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            callUploadFileActivity();
+                        }
+                    });
                     isopen=true;
                 }
             }
@@ -140,11 +146,11 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         Stormpath.getAccount(new StormpathCallback<Account>() {
             @Override
             public void onSuccess(Account account) {
-                String profileInfoText = "Email: " + account.getEmail() + "\n" +
+                String profileInfoText = //"Email: " + account.getEmail() + "\n" +
                         "Username: " + account.getUsername(); //+ "\n" +
                        // "Href: " + account.getHref();
 
-                profileTextView.setText(profileInfoText);
+                //profileTextView.setText(profileInfoText);
                 welcomeTextView.setText(getTimeFromAndroid()+ ", " + account.getGivenName());
 
                 accessTokenEditText.setText("Hope You are sleeping Enough!");
@@ -192,21 +198,21 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
     private String getTimeFromAndroid() {
         Calendar calendar = Calendar.getInstance();
         int hours = calendar.get(Calendar.HOUR_OF_DAY);
-        if(hours>=1 || hours<=12){
+        if(hours>=1 && hours<=12){
             // Toast.makeText(this, "Good Morning", Toast.LENGTH_SHORT).show();
-            return "Good Morning !!";
-        }else if(hours>=12 || hours<=16){
+            return "Good Morning";
+        }else if(hours>=12 && hours<=16){
             //Toast.makeText(this, "Good Afternoon", Toast.LENGTH_SHORT).show();
-            return "Good Afternoon !!";
-        }else if(hours>=16 || hours<=21){
+            return "Good Afternoon";
+        }else if(hours>=16 && hours<=21){
             //  Toast.makeText(this, "Good Evening", Toast.LENGTH_SHORT).show();
-            return "Good Evening !!";
-        }else if(hours>=21 || hours<=24){
+            return "Good Evening";
+        }else if(hours>=21 && hours<=24){
             // Toast.makeText(this, "Good Night", Toast.LENGTH_SHORT).show();
-            return "Good Night !!";
+            return "Good Night";
         }
         else
-        { return "Good Morning !!";}
+        { return "Good Morning";}
     }
 
     private void callTalkToMeACtivity(){
@@ -244,12 +250,12 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(this, PersonalDetailsActivity.class));
        } else if (id == R.id.nav_sensors) {
             startActivity(new Intent(this, SensorActivity.class));
         } else if (id == R.id.nav_nearestHospitals) {
+        } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(this, EmergencyDetailsActivity.class));
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -282,7 +288,7 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         startActivity(intent);
     }
     private void callUploadFileActivity(){
-        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        Intent intent=new Intent(DashboardLandingActivity.this,UploadFileActivity.class);
         startActivity(intent);
     }
 }
