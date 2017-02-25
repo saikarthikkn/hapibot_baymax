@@ -11,6 +11,7 @@
     tools:context="com.hapi.sdk.HapiBot.DisplayQuestionsActivity"
     android:orientation="vertical"
     android:weightSum="10"
+
     >
 
     <TextView
@@ -18,13 +19,15 @@
         android:layout_height="0dp"
         android:text="Question"
         android:id="@+id/textView"
-        android:layout_weight="5"/>
+        android:layout_weight="1"/>
 
     <RadioGroup
         android:id="@+id/questionsGrp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_weight="1"
         />
     <LinearLayout

@@ -1,6 +1,8 @@
 package com.hapi.sdk.HapiBot;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.speech.tts.TextToSpeech;
@@ -9,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -195,7 +199,17 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
 
     public void displayQuestions(Diagnosis diagnosis){
         radioGroup.removeAllViews();
+        ColorStateList colorStateList = new ColorStateList(
+                new int[][]{
+                        new int[]{-android.R.attr.state_checked},
+                        new int[]{android.R.attr.state_checked}
+                },
+                new int[]{
 
+                        Color.DKGRAY
+                        , Color.rgb (242,81,112),
+                }
+        );
         RadioButton radioButton;
         int numberOfItems=diagnosis.getQuestion().getItems().size();
         textView.setText(diagnosis.getQuestion().getText());
@@ -204,9 +218,9 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
             numberOfRadioButtons=numberOfItems;
             for(int i=0;i<numberOfRadioButtons;i++){
                 radioButton=new RadioButton(getApplicationContext());
-                radioButton.setWidth(100);
-                radioButton.setHeight(10);
-                radioButton.setGravity(Gravity.CENTER_HORIZONTAL);
+               // radioButton.setGravity(Gravity.CENTER_HORIZONTAL);
+                radioButton.setButtonTintList(colorStateList);
+                radioButton.setTextColor(R.color.colorAccent);
                 radioButton.setText( diagnosis.getQuestion().getItems().get(i).getName());
                 radioGroup.addView(radioButton);
 //                say(i+1+diagnosis.getQuestion().getItems().get(i).getName());
@@ -224,7 +238,7 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
             for (int i=0;i<numberOfRadioButtons;i++){
                 radioButton=new RadioButton(getApplicationContext());
                 radioButton.setText(diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
-                radioGroup.addView(radioButton);
+                 radioGroup.addView(radioButton);
 //                say(i+1+diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
 
             }
