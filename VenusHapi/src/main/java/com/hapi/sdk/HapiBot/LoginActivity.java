@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private StormpathCallback<Void> loginCallback = new StormpathCallback<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
-            navigateToProfile();
-          //  navigateToHome();
+           // navigateToProfile();
+            navigateToHome();
         }
 
         @Override
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (!TextUtils.isEmpty(Stormpath.getAccessToken())) {
             // if we already have an accessToken saved, the user should be logged in
-            navigateToProfile();
+            navigateToHome();
         }
 
         loginButton.setOnClickListener(this);

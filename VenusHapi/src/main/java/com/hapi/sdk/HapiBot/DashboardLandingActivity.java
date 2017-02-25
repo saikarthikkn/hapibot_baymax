@@ -8,8 +8,16 @@ import com.hapi.sdk.models.StormpathError;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -31,22 +39,38 @@ Will have
 
  */
 
-public class DashboardLandingActivity extends AppCompatActivity {
-    FloatingActionButton plus,call,speak;
+public class DashboardLandingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    FloatingActionButton plus, btnAttachments, btnTalkToMe;
     Animation plus_open, plus_close,plusclockwise,plusanticlockwise;
     boolean isopen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_landing);
+
+        //Start of Nvigation
+        //setContentView(R.layout.activity_dash_landing);
+        setContentView(R.layout.activity_dash_navigation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.dashtoolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //End of Navigation
 
         final TextView welcomeTextView = (TextView) findViewById(R.id.tv_welcome);
         final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
         final EditText accessTokenEditText = (EditText) findViewById(R.id.input_access_token);
         final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
         plus=(FloatingActionButton)findViewById(R.id.plus);
-        call=(FloatingActionButton)findViewById(R.id.call);
-        speak=(FloatingActionButton)findViewById(R.id.speak);
+        btnAttachments =(FloatingActionButton)findViewById(R.id.call);
+        btnTalkToMe =(FloatingActionButton)findViewById(R.id.speak);
         plus_open= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_open);
         plus_close= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floatbtn_close);
         plusclockwise= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_clockwise);
@@ -56,22 +80,22 @@ public class DashboardLandingActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 if(isopen) {
-                    call.startAnimation(plus_close);
-                    speak.startAnimation(plus_close);
+                    btnAttachments.startAnimation(plus_close);
+                    btnTalkToMe.startAnimation(plus_close);
                     plus.startAnimation(plusanticlockwise);
-                    call.setClickable(false);
-                    speak.setClickable(false);
+                    btnAttachments.setClickable(false);
+                    btnTalkToMe.setClickable(false);
 
                     isopen=false;
                 }
                 else
                 {
-                    call.startAnimation(plus_open);
-                    speak.startAnimation(plus_open);
+                    btnAttachments.startAnimation(plus_open);
+                    btnTalkToMe.startAnimation(plus_open);
                     plus.startAnimation(plusclockwise);
-                    call.setClickable(true);
-                    speak.setClickable(true);
-                    call.setOnClickListener(new View.OnClickListener() {
+                    btnAttachments.setClickable(true);
+                    btnTalkToMe.setClickable(true);
+                    btnAttachments.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             Uri number = Uri.parse("tel:9740604400");
                             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
@@ -79,12 +103,17 @@ public class DashboardLandingActivity extends AppCompatActivity {
                         }}
                     );
 
-                    speak.setOnClickListener(new View.OnClickListener() {
+                    btnTalkToMe.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            Uri number = Uri.parse("sms:9740604400");
-                            Intent intent = new Intent( Intent.ACTION_VIEW, number);
-                            intent.putExtra( "sms_body", "Hello" );
-                            startActivity(intent);
+//                            Uri number = Uri.parse("sms:9740604400");
+//                            Intent intent=new Intent(getApplication(),TalkToMeActivity.class);
+////                            startActivity(new Intent(this));
+////                            Intent intent = new Intent( Intent.ACTION_VIEW, number);
+////                            intent.putExtra( "sms_body", "Hello" );
+//                            startActivity(intent);
+//                            Intent intent=new Intent(this,TalkToMeActivity.class);
+//                            startActivity(intent);
+                            callTalkToMeACtivity();
                         }}
                     );
                     isopen=true;
@@ -109,6 +138,7 @@ public class DashboardLandingActivity extends AppCompatActivity {
             @Override
             public void onFailure(StormpathError error) {
                 Toast.makeText(DashboardLandingActivity.this, error.message(), Toast.LENGTH_LONG).show();
+                onLogoutClicked();
             }
         });
 
@@ -161,5 +191,72 @@ public class DashboardLandingActivity extends AppCompatActivity {
         }
         else
         { return "Good Morning !!";}
+    }
+
+    private void callTalkToMeACtivity(){
+        Intent intent=new Intent(DashboardLandingActivity.this,TalkToMeActivity.class);
+        startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dash_navigation, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(this, PersonalDetailsActivity.class));
+
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

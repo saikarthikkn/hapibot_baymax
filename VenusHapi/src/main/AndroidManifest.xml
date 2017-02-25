@@ -3,6 +3,8 @@
     package="com.hapi.sdk.HapiBot">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
         android:name=".StormpathVirtualCannonApp"
@@ -11,7 +13,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DashboardLandingActivity" />
+        <activity android:name=".DashboardLandingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,9 +39,24 @@
         <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
 
 
-        <!-- <data android:scheme="io.stormpath.apps.stormpath-notes" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+        <activity android:name=".TalkToMeActivity" ></activity>
+        <activity android:name=".DisplayQuestionsActivity"></activity>
+        <activity android:name=".DisplayResult" />
+
+         <activity
+         android:name="com.hapi.sdk.CustomTabActivity"
+         android:exported="true">
+         <intent-filter>
+         <action android:name="android.intent.action.VIEW" />
+
+
+         <category android:name="android.intent.category.DEFAULT" />
+         <category android:name="android.intent.category.BROWSABLE" />
+
+
+         <data android:scheme="io.stormpath.apps.stormpath-notes" />
+         </intent-filter>
+         </activity>
 
         <service
             android:name=".HeartRateService"
