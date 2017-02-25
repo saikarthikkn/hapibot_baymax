@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hapi.sdk.HapiBot.RootActivity">
+    <data>
+        <variable
+            name="user"
+            type="com.fitbit.api.models.User"/>
+
+        <variable
+            name="loading"
+            type="java.lang.Boolean"/>
+
+        <variable
+            name="scopesGranted"
+            type="java.lang.String"/>
+
+        <import type="android.view.View"/>
+    </data>
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:background="#e8e8e7"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textColor="#2582C5"
+            android:layout_marginLeft="25dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal|center_vertical"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:gravity="right"
+            android:orientation="horizontal" >
+
+            <ImageView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/greybackground"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Full Name"
+            android:text="@{@string/hello_format(user.getFullName())}"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/txtfullname" />
+
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="DOB"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:text="@{@string/hello_format(user.getAge())}"
+            android:headerBackground="@android:color/transparent"
+            android:id="@+id/txtdob"/>
+            <!--android:onClick="onClick"/>-->
+        <Spinner android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:drawSelectorOnTop="true"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:entries="@array/array_name"/>
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Height"
+            android:text="@{@string/hello_format(user.getHeight())}"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"/>
+        <EditText android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:hint="Weight"
+            android:text="@{@string/hello_format(user.getWeight())}"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onLogoutClick"
+            android:text="@string/logout"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="mini"
+            android:id="@+id/btnregister"
+            android:layout_gravity="bottom|right"
+            app:backgroundTint="@android:color/background_light"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:scaleType="center"
+            android:onClick="goToUrl"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
+    </LinearLayout>
+  </ScrollView>
+</layout>

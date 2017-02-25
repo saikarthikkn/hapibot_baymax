@@ -28,7 +28,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private StormpathCallback<Void> loginCallback = new StormpathCallback<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
-            navigateToHome();
+            navigateToProfile();
+          //  navigateToHome();
         }
 
         @Override
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_hapibotlogin);
 
         usernameInput = (EditText) findViewById(R.id.input_username);
         passwordInput = (EditText) findViewById(R.id.input_password);
@@ -131,6 +132,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void navigateToHome() {
         startActivity(new Intent(this, DashboardLandingActivity.class));
+        finish();
+    }
+
+    private void navigateToProfile() {
+        startActivity(new Intent(this, PersonalDetailsActivity.class));
         finish();
     }
 }

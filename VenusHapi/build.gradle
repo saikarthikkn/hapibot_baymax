@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.hapi.sdk.StormpathLoginBasic"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,12 +22,17 @@ android {
         // Invalid package reference in library; not included in Android: java.nio.file. Referenced from okio.Okio.
         warning 'InvalidPackage'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile project(':sdk')
+    compile project(':fitbitapi')
+    compile project(':fitbitauth')
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
 }
