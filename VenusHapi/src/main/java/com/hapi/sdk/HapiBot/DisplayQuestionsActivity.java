@@ -4,22 +4,16 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.speech.tts.TextToSpeech;
-import android.support.design.internal.ParcelableSparseArray;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import data.model.Choice;
 import data.model.Condition;
@@ -100,56 +94,65 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
             }
         });
     }
-
+    public void cancelBtnClicked(View view){
+        Intent intent=new Intent(DisplayQuestionsActivity.this,DashboardLandingActivity.class);
+        startActivity(intent);
+    }
     public void okBtnClicked(View view){
-        if(count<=MAX_QUESTIONS){
-            int checkedRadioButtonId =radioGroup.getCheckedRadioButtonId();
-            View radioButton=radioGroup.findViewById(checkedRadioButtonId);
-            int indexOfChild=radioGroup.indexOfChild(radioButton);
-            RadioButton rBtn = (RadioButton) radioGroup.getChildAt(indexOfChild);
-            String label = rBtn.getText().toString();
-            Evidence evidence=new Evidence();
-            if(diagnosis.getQuestion().getItems().size()==1){
-                evidence.setId(diagnosis.getQuestion().getItems().get(0).getId());
-                evidence.setChoiceId(getChoiceIdForGivenLabel(diagnosis,label));
-            }else{
-                evidence.setId(diagnosis.getQuestion().getItems().get(indexOfChild).getId());
-                evidence.setChoiceId("present");
-            }
+        if(radioGroup.getCheckedRadioButtonId()==-1){
+                    Toast.makeText(getApplicationContext(),"select an option first",Toast.LENGTH_LONG).show();
 
-            symptomFilters.getEvidence().add(evidence);
-            service.diagnose(symptomFilters).enqueue(new Callback<Diagnosis>() {
-                @Override
-                public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
-                    String result;
-                    if(response.isSuccessful()){
-                        diagnosis=response.body();
-                        displayQuestions(diagnosis);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Diagnosis> call, Throwable t) {
-                }
-            });
         }else{
-
-             result=diagnosis.getConditions();
-            ArrayList<String> resultAndProbability=new ArrayList<>();
-            int count=0;
-            for(Condition condition:result){
-                if(count<MAX_PROBABILITIES){
-                    resultAndProbability.add(condition.getName()+" : "+condition.getProbability());
+            if(count<=MAX_QUESTIONS){
+                int checkedRadioButtonId =radioGroup.getCheckedRadioButtonId();
+                View radioButton=radioGroup.findViewById(checkedRadioButtonId);
+                int indexOfChild=radioGroup.indexOfChild(radioButton);
+                RadioButton rBtn = (RadioButton) radioGroup.getChildAt(indexOfChild);
+                String label = rBtn.getText().toString();
+                Evidence evidence=new Evidence();
+                if(diagnosis.getQuestion().getItems().size()==1){
+                    evidence.setId(diagnosis.getQuestion().getItems().get(0).getId());
+                    evidence.setChoiceId(getChoiceIdForGivenLabel(diagnosis,label));
                 }else{
-                    break;
+                    evidence.setId(diagnosis.getQuestion().getItems().get(indexOfChild).getId());
+                    evidence.setChoiceId("present");
                 }
-                count++;
+
+                symptomFilters.getEvidence().add(evidence);
+                service.diagnose(symptomFilters).enqueue(new Callback<Diagnosis>() {
+                    @Override
+                    public void onResponse(Call<Diagnosis> call, Response<Diagnosis> response) {
+                        String result;
+                        if(response.isSuccessful()){
+                            diagnosis=response.body();
+                            displayQuestions(diagnosis);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Diagnosis> call, Throwable t) {
+                    }
+                });
+            }else{
+
+                result=diagnosis.getConditions();
+                ArrayList<String> resultAndProbability=new ArrayList<>();
+                int count=0;
+                for(Condition condition:result){
+                    if(count<MAX_PROBABILITIES){
+                        resultAndProbability.add(condition.getName()+" : "+condition.getProbability());
+                    }else{
+                        break;
+                    }
+                    count++;
+                }
+                Intent intent = new Intent(this, DisplaySymptomsResult.class);
+                intent.putStringArrayListExtra(EXTRA_MESSAGE,resultAndProbability);
+                startActivity(intent);
             }
-            Intent intent = new Intent(this, DisplayResult.class);
-            intent.putStringArrayListExtra(EXTRA_MESSAGE,resultAndProbability);
-            startActivity(intent);
+            count++;
         }
-        count++;
+
     }
 
 
@@ -169,28 +172,26 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
     }
 
     public void diagnoseDisease(List<String> symptomsAcquired){
-        Evidence evidence;
         service= ApiUtils.getService();
         symptomFilters=new SymptomFilters();
-        //Default values
         symptomFilters.setAge(30);
         symptomFilters.setSex("male");
         List<Evidence> evidences=new ArrayList<>();
-        for(String symptomId:symptomsAcquired){
+        Evidence evidence=null;
+
+        if(symptomsAcquired.size()>0){
+            for(int i=0;i<symptomsAcquired.size();i++){
+                evidence=new Evidence();
+                evidence.setId(symptomsAcquired.get(i));
+                evidence.setChoiceId("present");
+                evidences.add(evidence);
+            }
+        }else{
             evidence=new Evidence();
-            evidence.setId(symptomId);
+            evidence.setId("s_98");
             evidence.setChoiceId("present");
             evidences.add(evidence);
         }
-//        evidence=new Evidence();
-//        evidence.setId("s_1172");
-//        evidence.setChoiceId("present");
-//        evidences.add(evidence);
-//        for(int i=0;i<symptomsAcquired.size();i++){
-//            evidence=new Evidence();
-//            evidence.setId(symptomsAcquired.get(i));
-//            evidence.setChoiceId("present");
-//        }
 
         symptomFilters.setEvidence(evidences);
         service.diagnose(symptomFilters).enqueue(new Callback<Diagnosis>() {
@@ -210,37 +211,37 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
     }
 
     public void displayQuestions(Diagnosis diagnosis){
-        radioGroup.removeAllViews();
-        ColorStateList colorStateList = new ColorStateList(
-                new int[][]{
-                        new int[]{-android.R.attr.state_checked},
-                        new int[]{android.R.attr.state_checked}
-                },
-                new int[]{
+        if(diagnosis!=null){
+            radioGroup.removeAllViews();
+            ColorStateList colorStateList = new ColorStateList(
+                    new int[][]{
+                            new int[]{-android.R.attr.state_checked},
+                            new int[]{android.R.attr.state_checked}
+                    },
+                    new int[]{
 
-                        Color.DKGRAY
-                        , Color.rgb (242,81,112),
-                }
-        );
-        RadioButton radioButton;
-        int numberOfItems=diagnosis.getQuestion().getItems().size();
-        textView.setText(diagnosis.getQuestion().getText());
+                            Color.DKGRAY
+                            , Color.rgb (242,81,112),
+                    }
+            );
+            RadioButton radioButton;
+            int numberOfItems=diagnosis.getQuestion().getItems().size();
+            textView.setText(diagnosis.getQuestion().getText());
 //        say(diagnosis.getQuestion().getText());
-        if(numberOfItems>1){
-            numberOfRadioButtons=numberOfItems;
-            for(int i=0;i<numberOfRadioButtons;i++){
-                radioButton=new RadioButton(getApplicationContext());
-               // radioButton.setGravity(Gravity.CENTER_HORIZONTAL);
-                radioButton.setButtonTintList(colorStateList);
-                radioButton.setText(diagnosis.getQuestion().getItems().get(i).getName());
-
-                radioButton.setTextColor(R.color.colorAccent);
-                radioGroup.addView(radioButton);
+            if(numberOfItems>1){
+                numberOfRadioButtons=numberOfItems;
+                for(int i=0;i<numberOfRadioButtons;i++){
+                    radioButton=new RadioButton(getApplicationContext());
+                    // radioButton.setGravity(Gravity.CENTER_HORIZONTAL);
+                    radioButton.setButtonTintList(colorStateList);
+                    radioButton.setTextColor(R.color.colorAccent);
+                    radioButton.setText( diagnosis.getQuestion().getItems().get(i).getName());
+                    radioGroup.addView(radioButton);
 //                say(i+1+diagnosis.getQuestion().getItems().get(i).getName());
-            }
-        }else{
-            numberOfRadioButtons=diagnosis.getQuestion().getItems().get(0).getChoices().size();
-            //check if probability >95%
+                }
+            }else{
+                numberOfRadioButtons=diagnosis.getQuestion().getItems().get(0).getChoices().size();
+                //check if probability >95%
 //            List<Condition> conditions=diagnosis.getConditions();
 //            for(int i=0;i<conditions.size();i++){
 //                if(conditions.get(i).getProbability()>0.90f){
@@ -248,17 +249,16 @@ public class DisplayQuestionsActivity extends AppCompatActivity {
 //                    break;
 //                }
 //            }
-
-            for (int i=0;i<numberOfRadioButtons;i++){
-                radioButton=new RadioButton(getApplicationContext());
-                radioButton.setButtonTintList(colorStateList);
-                radioButton.setTextColor(R.color.colorAccent);
-                radioButton.setText(diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
-                 radioGroup.addView(radioButton);
+                for (int i=0;i<numberOfRadioButtons;i++){
+                    radioButton=new RadioButton(getApplicationContext());
+                    radioButton.setText(diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
+                    radioGroup.addView(radioButton);
 //                say(i+1+diagnosis.getQuestion().getItems().get(0).getChoices().get(i).getLabel());
 
+                }
             }
         }
+
     }
 
 }

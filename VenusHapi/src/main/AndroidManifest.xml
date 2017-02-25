@@ -38,7 +38,7 @@
         <activity android:name=".TalkToMeActivity" />
         <activity android:name=".DisplayQuestionsActivity" />
 
-        <activity android:name=".DisplayResult" />
+        <activity android:name=".DisplaySymptomsResult" />
         <activity android:name=".AndroidCamera2API" />
         <activity
             android:name=".OCRParseActivity"
