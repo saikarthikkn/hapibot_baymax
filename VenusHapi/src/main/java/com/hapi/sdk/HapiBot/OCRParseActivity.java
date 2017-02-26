@@ -46,7 +46,7 @@ public class OCRParseActivity extends AppCompatActivity {
         TextView textView = (TextView) this.findViewById(R.id.textView3);
         textView.setText(recognizedText);
         String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        ScannedReport scannedReport = new ScannedReport(date,reportId,filename,"pdf");
+        ScannedReport scannedReport = new ScannedReport(date,reportId,filename,"BloodReport");
         databaseHelper.createScannedReportEntry(scannedReport);
         Intent intent = new Intent(this, DetailViewActivity.class);
         intent.putExtra("path",filename);

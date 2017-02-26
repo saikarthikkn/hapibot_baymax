@@ -22,6 +22,8 @@ public class ScannedReport {
         this.type = type;
     }
 
+    public ScannedReport(){}
+
     public String getReportID() {
         return reportID;
     }
