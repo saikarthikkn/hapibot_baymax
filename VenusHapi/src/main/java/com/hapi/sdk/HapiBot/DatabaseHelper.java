@@ -352,4 +352,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public ScannedReport[] getScannedReports() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_ScannedReport;
+
+        // Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null && c.getCount() > 0) {
+            ScannedReport[] scannedReports = new ScannedReport[c.getCount()];
+            int i = 0;
+            c.moveToFirst();
+            do {
+                ScannedReport td = new ScannedReport();
+                td.setReportID(c.getString(0));
+                td.setDate((c.getString(1)));
+                td.setName(c.getString(2));
+                td.setPath(c.getString(3));
+                td.setType(c.getString(4));
+
+                //System.out.println(td.getTestID());
+                //System.out.println(td.getTestName());
+                //System.out.println(td.getTestNameAlias());
+
+                scannedReports[i++] = td;
+            } while (c.moveToNext());
+
+            c.close();
+            db.close();
+            return scannedReports;
+
+        }
+        return null;
+    }
 }

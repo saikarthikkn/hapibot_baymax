@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class OCRHelper extends AsyncTask<Void, Void, Boolean> {
 
     OCRService service;
-    static final String apiKey = "dba3d07b41fd2df5de3a4a5d40445bcb";
+    static final String apiKey = "8fd866d85a6abe835ff43474d5db4c74";
     String recognized_text;
     String fileName;
     DatabaseHelper databaseHelper;
@@ -51,9 +51,9 @@ public class OCRHelper extends AsyncTask<Void, Void, Boolean> {
 
 //        try {
 
-            //getAndSaveRecognizedText();
-        recognized_text = "Laboratory Test Patient’s results Reference Value\\nCreatinine 40.5 <79.2\\nUrea 2.9 <8.3\\nTotal protein 82 64-83\\nAlbumin fraction 63.5 60-71\\nAlpha 1 fraction 2.4 1.4-2.9\\nAlpha 2 fraction 12.1 7-11\\nBeta globulin fraction 16.4 8-13\\nGamma globulin fraction 5.6 9-16\\nAlbumin zone 51.3 53.1-66.4\\nAlpha 1 zone 5.9 3.2-5.7\\nAlpha 2 zone 16.3 7.5-12.4\\nBeta 1 zone 15.7 5.2-8.1\\nBeta 2 zone 4.7 3.4-6.5";
-        parseRecognizedText();
+            getAndSaveRecognizedText();
+        //recognized_text = "Laboratory Test Patient’s results Reference Value\\nCreatinine 40.5 <79.2\\nUrea 2.9 <8.3\\nTotal protein 82 64-83\\nAlbumin fraction 63.5 60-71\\nAlpha 1 fraction 2.4 1.4-2.9\\nAlpha 2 fraction 12.1 7-11\\nBeta globulin fraction 16.4 8-13\\nGamma globulin fraction 5.6 9-16\\nAlbumin zone 51.3 53.1-66.4\\nAlpha 1 zone 5.9 3.2-5.7\\nAlpha 2 zone 16.3 7.5-12.4\\nBeta 1 zone 15.7 5.2-8.1\\nBeta 2 zone 4.7 3.4-6.5";
+        //parseRecognizedText();
 //        }
 //
         // TODO: register the new account here.

@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 public interface OCRService {
     @Multipart
-    @POST("upload?key=dba3d07b41fd2df5de3a4a5d40445bcb")
+    @POST("upload?key=8fd866d85a6abe835ff43474d5db4c74")
     Call<OCRFileResponse> upload(
             @Part("file\"; filename=\"pp.png\" ") RequestBody file
     );

@@ -20,20 +20,21 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
+import Models.ScannedReport;
+
 public class DetailListViewAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
-    private String path;
+    private HashMap<String, List<ScannedReport>> _listDataChild;
+    //private String path;
 
     public DetailListViewAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<String>> listChildData, String imagePath) {
+                                 HashMap<String, List<ScannedReport>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
-        path=imagePath;
     }
 
     @Override
@@ -51,7 +52,8 @@ public class DetailListViewAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final ScannedReport report = (ScannedReport) getChild(groupPosition, childPosition);
+        final String childText = report.getReportID();
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -65,7 +67,7 @@ public class DetailListViewAdapter extends BaseExpandableListAdapter {
         txtListChild.setText(childText);
         final int THUMBSIZE = 64;
 
-        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(path),
+        Bitmap ThumbImage = ThumbnailUtils.extractThumbnail(BitmapFactory.decodeFile(report.getPath()),
                 THUMBSIZE, THUMBSIZE);
         ImageView thmbnail = (ImageView)convertView.findViewById(R.id.imageView2);
         if (ThumbImage!=null)thmbnail.setImageBitmap(ThumbImage);
@@ -79,24 +81,24 @@ public class DetailListViewAdapter extends BaseExpandableListAdapter {
     }
 
     public void zoom(){
-        ImageView photoImage = (ImageView) ((Activity)_context).findViewById(R.id.imageView2);
-        if (photoImage.getDrawable()!=null) {
-            AlertDialog.Builder Imagedialog = new AlertDialog.Builder(((Activity)_context));
-            Imagedialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                }
-            });
-            LinearLayout layout = new LinearLayout(((Activity)_context));
-            ImageView image = new ImageView(((Activity)_context));
-            Drawable D = Drawable.createFromPath(path);
-            image.setImageDrawable(D);
-            layout.addView(image);
-            image.setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
-            Imagedialog.setView(layout);
-            Imagedialog.create();
-            Imagedialog.show();
-        }
+//        ImageView photoImage = (ImageView) ((Activity)_context).findViewById(R.id.imageView2);
+//        if (photoImage.getDrawable()!=null) {
+//            AlertDialog.Builder Imagedialog = new AlertDialog.Builder(((Activity)_context));
+//            Imagedialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+//                }
+//            });
+//            LinearLayout layout = new LinearLayout(((Activity)_context));
+//            ImageView image = new ImageView(((Activity)_context));
+//            Drawable D = Drawable.createFromPath(path);
+//            image.setImageDrawable(D);
+//            layout.addView(image);
+//            image.setLayoutParams(new LinearLayout.LayoutParams(-1, -1));
+//            Imagedialog.setView(layout);
+//            Imagedialog.create();
+//            Imagedialog.show();
+//        }
     }
     @Override
     public int getChildrenCount(int groupPosition) {
