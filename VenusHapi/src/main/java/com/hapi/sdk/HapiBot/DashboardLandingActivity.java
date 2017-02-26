@@ -254,6 +254,12 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
        } else if (id == R.id.nav_sensors) {
             startActivity(new Intent(this, SensorActivity.class));
         } else if (id == R.id.nav_nearestHospitals) {
+
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("geo:0,0?q=Hospitals"));
+            startActivity(intent);
+            //startActivity(new Intent(this, EmergencyDetailsActivity.class));
+
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(this, EmergencyDetailsActivity.class));
 

@@ -48,7 +48,7 @@ public class SensorActivity extends AppCompatActivity {
         text_id_secret = (TextView) findViewById(R.id.text_id_secret);
 
         text_id_client.setText("Fitbit Client Id  : 2285D5 " );
-        text_id_value.setText("Fitbit Client Secret  : 0fe7854067ab832c91bcccd455f62402 " );
+        text_id_secret.setText("Fitbit Client Secret  : 0fe7854067ab832c91bcccd455f62402 " );
 
 
 

@@ -131,7 +131,7 @@
             android:id="@+id/btnregister"
             android:layout_gravity="bottom|right"
             app:backgroundTint="@android:color/background_light"
-            app:srcCompat="@mipmap/andWear"
+            app:srcCompat="@mipmap/and_wear"
             android:scaleType="center"
             android:onClick="goToUrl"/>
 
