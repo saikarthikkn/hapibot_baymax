@@ -61,7 +61,8 @@
             android:shadowDy="0"
             android:shadowRadius="5"
             android:textColor="#FFFFFF"
-        android:text="Cancel"/>
+        android:text="Cancel"
+            android:onClick="cancelBtnClicked"/>
     </LinearLayout>
 
 </LinearLayout>
