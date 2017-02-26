@@ -153,6 +153,13 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                 //profileTextView.setText(profileInfoText);
                 welcomeTextView.setText(getTimeFromAndroid()+ ", " + account.getGivenName());
 
+                TextView nameView = (TextView) findViewById(R.id.navdashusername);
+                nameView.setText(account.getGivenName());
+
+                TextView emailView = (TextView) findViewById(R.id.navdashuseremailid);
+                emailView.setText(account.getEmail());
+
+
                 accessTokenEditText.setText("Your sleep pattern.");
               //  refreshTokenEditText.setText(Stormpath.getRefreshToken());
             }
@@ -270,7 +277,9 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            Stormpath.logout();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
