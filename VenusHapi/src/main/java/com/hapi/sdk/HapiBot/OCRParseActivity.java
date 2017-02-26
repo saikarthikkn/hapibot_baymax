@@ -19,6 +19,7 @@ public class OCRParseActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     String reportId;
     String filename;
+    final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
 //    OCRParseActivity(){
 //        databaseHelper = new DatabaseHelper(this);
 //    }
@@ -48,9 +49,10 @@ public class OCRParseActivity extends AppCompatActivity {
         String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         ScannedReport scannedReport = new ScannedReport(date,reportId,filename,"BloodReport");
         databaseHelper.createScannedReportEntry(scannedReport);
-        Intent intent = new Intent(this, DetailViewActivity.class);
-        intent.putExtra("path",filename);
-        startActivity(intent);
+        progressBar.setVisibility(View.INVISIBLE);
+//        Intent intent = new Intent(this, DetailViewActivity.class);
+//        intent.putExtra("path",filename);
+//        startActivity(intent);
         // Call the Report Activity
     }
 
@@ -59,7 +61,7 @@ public class OCRParseActivity extends AppCompatActivity {
         // for very easy animations. If available, use these APIs to fade-in
         // the progress spinner.
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
 
             progressBar.animate().setDuration(shortAnimTime).alpha(
                     show ? 1 : 0).setListener(new AnimatorListenerAdapter() {

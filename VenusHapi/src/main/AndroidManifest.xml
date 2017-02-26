@@ -41,6 +41,7 @@
         <activity android:name=".DisplayQuestionsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".DetailViewActivity" />
+        <activity android:name=".GraphActivity" />
         <activity android:name=".UploadFileActivity" />
 
         <activity android:name=".DisplaySymptomsResult" />

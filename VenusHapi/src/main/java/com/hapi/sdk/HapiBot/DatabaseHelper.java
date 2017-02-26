@@ -72,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_ScannedReports = "CREATE TABLE "
             + TABLE_ScannedReport + "(" + _reportIDKey + " TEXT PRIMARY KEY," + _date
-            + " DATETIME," + _name
+            + " TEXT," + _name
             + " TEXT,"+ _path
             + " TEXT,"+ _type
             + " TEXT" + ")";
@@ -245,7 +245,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(_reportIDKey, report.getReportID());
 
-//        values.put(_date, getDateTime(report.getDate()));
+        values.put(_date, report.getDate());
         values.put(_name, report.getName());
         values.put(_path, report.getPath());
         values.put(_type, report.getType());
@@ -372,7 +372,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 td.setName(c.getString(2));
                 td.setPath(c.getString(3));
                 td.setType(c.getString(4));
-
+                //c.getString(c.getColumnIndex(_reportIDKey))
                 //System.out.println(td.getTestID());
                 //System.out.println(td.getTestName());
                 //System.out.println(td.getTestNameAlias());

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.Window;
 import android.widget.ExpandableListAdapter;
@@ -101,13 +102,15 @@ private final Context context = this;
         for(ScannedReport report: scannedReports) {
             SimpleDateFormat dateFormat = new SimpleDateFormat(
                     "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            String date =  dateFormat.format(report.getDate());
+            String date =  report.getDate();
+            Log.i("baymax", date);
             List<ScannedReport> list = null;
             if(listDataChild.get(date)!=null) {
                 list = listDataChild.get(date);
             } else
             {
                 list = new ArrayList<ScannedReport>();
+                listDataChild.put(date, list);
             }
 
             list.add(report);
