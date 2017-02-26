@@ -1,5 +1,6 @@
 package com.hapi.sdk.HapiBot;
 
+import com.hapi.sdk.HapiBot.views.*;
 import com.hapi.sdk.Stormpath;
 import com.hapi.sdk.StormpathCallback;
 import com.hapi.sdk.models.Account;
@@ -67,7 +68,7 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
 
         final TextView welcomeTextView = (TextView) findViewById(R.id.tv_welcome);
        // final TextView profileTextView = (TextView) findViewById(R.id.tv_profile);
-        final EditText accessTokenEditText = (EditText) findViewById(R.id.input_access_token);
+        final TextView accessTokenEditText = (TextView) findViewById(R.id.input_access_token);
        // final EditText refreshTokenEditText = (EditText) findViewById(R.id.input_refresh_token);
         plus=(FloatingActionButton)findViewById(R.id.plus);
         btnAttachments =(FloatingActionButton)findViewById(R.id.call);
@@ -152,7 +153,7 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
                 //profileTextView.setText(profileInfoText);
                 welcomeTextView.setText(getTimeFromAndroid()+ ", " + account.getGivenName());
 
-                accessTokenEditText.setText("Hope You are sleeping Enough!");
+                accessTokenEditText.setText("Your sleep pattern.");
               //  refreshTokenEditText.setText(Stormpath.getRefreshToken());
             }
 
@@ -250,9 +251,17 @@ public class DashboardLandingActivity extends AppCompatActivity implements Navig
 
         if (id == R.id.nav_camera) {
             startActivity(new Intent(this, PersonalDetailsActivity.class));
+       } else if (id == R.id.nav_sensors) {
+            startActivity(new Intent(this, SensorActivity.class));
+        } else if (id == R.id.nav_nearestHospitals) {
+
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("geo:0,0?q=Hospitals"));
+            startActivity(intent);
+            //startActivity(new Intent(this, EmergencyDetailsActivity.class));
+
         } else if (id == R.id.nav_gallery) {
             startActivity(new Intent(this, EmergencyDetailsActivity.class));
-
 
         } else if (id == R.id.nav_slideshow) {
 

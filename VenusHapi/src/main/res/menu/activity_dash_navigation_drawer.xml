@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/and_wear"
             android:title="Profile Information" />
         <item
             android:id="@+id/nav_gallery"
@@ -14,6 +14,14 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Uploaded Data" />
+        <item
+            android:id="@+id/nav_sensors"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Sensors" />
+        <item
+            android:id="@+id/nav_nearestHospitals"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="NearestHospitals" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_slideshow"
