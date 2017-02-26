@@ -20,18 +20,18 @@ import retrofit2.http.POST;
 public interface InfermedicaService {
 
     @GET("symptoms")
-    @Headers({"App-Id: d6847cf8 ",
-            "App-Key:e9d04ea8ca30b92fa6b7927c491006f0"})
+    @Headers({"App-Id: 8fd9388d",
+            "App-Key:88d97aa07017c0c5af128a1e9854110a"})
     Call<List<Symptoms>> getSymptoms();
 
     @GET("conditions")
-    @Headers({"App-Id: d6847cf8 ",
-            "App-Key:e9d04ea8ca30b92fa6b7927c491006f0"})
+    @Headers({"App-Id: 8fd9388d",
+            "App-Key:88d97aa07017c0c5af128a1e9854110a"})
     Call<List<Conditions>> getConditions();
 
     @POST("diagnosis")
-    @Headers({"App-Id: d6847cf8 ",
-            "App-Key:e9d04ea8ca30b92fa6b7927c491006f0"})
+    @Headers({"App-Id: 8fd9388d",
+            "App-Key:88d97aa07017c0c5af128a1e9854110a"})
     Call<Diagnosis> diagnose(@Body SymptomFilters symptomFilters);
 
 }
